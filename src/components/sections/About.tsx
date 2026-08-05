@@ -17,7 +17,7 @@ const software = [
 
 export function About({ className }: AboutProps) {
   return (
-    <section id="about" className={cn("pt-16 md:pt-20 py-20 md:py-32", className)}>
+    <section id="about" className={cn("py-16 md:py-20", className)}>
       <Container>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
