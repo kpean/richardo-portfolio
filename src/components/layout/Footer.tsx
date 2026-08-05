@@ -1,9 +1,23 @@
-import { socials } from "@/data/socials";
 import { cn } from "@/lib/utils";
 
 interface FooterProps {
   className?: string;
 }
+
+const footerLinks = [
+  {
+    label: "Instagram",
+    href: "https://instagram.com/richardokepin",
+  },
+  {
+    label: "Email",
+    href: "mailto:richardokepin@gmail.com",
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/6281233542309",
+  },
+];
 
 export function Footer({ className }: FooterProps) {
   return (
@@ -12,19 +26,21 @@ export function Footer({ className }: FooterProps) {
         "border-t border-black/10 bg-white dark:border-white/10 dark:bg-black",
         className
       )}
+      aria-label="Site footer"
     >
-      <div className="mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row sm:px-6 lg:px-8">
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          © {new Date().getFullYear()} Richardo Kevin. All rights reserved.
+      <div className="mx-auto flex flex-col items-center justify-between gap-4 px-4 py-10 sm:flex-row sm:px-6 lg:px-8">
+        <p className="text-sm font-medium text-black dark:text-white">
+          © 2026 richardokvn
         </p>
         <div className="flex items-center gap-6">
-          {socials.map((social) => (
+          {footerLinks.map((link) => (
             <a
-              key={social.platform}
-              href={social.url}
-              className="text-xs font-medium text-zinc-500 transition-colors hover:text-black dark:text-zinc-400 dark:hover:text-white"
+              key={link.label}
+              href={link.href}
+              aria-label={link.label}
+              className="text-sm font-medium text-black underline-offset-4 transition-colors duration-200 hover:text-black/60 hover:underline dark:text-white dark:hover:text-white/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white"
             >
-              {social.platform}
+              {link.label}
             </a>
           ))}
         </div>
