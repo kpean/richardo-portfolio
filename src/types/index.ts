@@ -3,7 +3,7 @@ export interface Project {
   slug: string;
   title: string;
   description: string;
-  thumbnail?: string;
+  thumbnail: string;
   category: string;
   duration: string;
   role: string;
