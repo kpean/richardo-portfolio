@@ -11,7 +11,7 @@ export interface Project {
   role: string;
   software: string[];
   client: string;
-  videoUrl: string;
+  youtubeId: string;
   tags: string[];
   githubUrl?: string;
   liveUrl?: string;

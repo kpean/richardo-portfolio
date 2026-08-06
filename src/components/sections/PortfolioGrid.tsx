@@ -36,12 +36,34 @@ interface PortfolioGridProps {
 
 const ProjectCard = React.memo(
   motion(({ project }: { project: (typeof projects)[number] }) => {
-    const [imageError, setImageError] = useState(false);
+    const [imageState, setImageState] = useState<
+      "maxres" | "hq" | "fallback"
+    >("maxres");
+
+    const thumbnailSrc = (() => {
+      if (project.youtubeId) {
+        if (imageState === "maxres") {
+          return `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`;
+        }
+        if (imageState === "hq") {
+          return `https://i.ytimg.com/vi/${project.youtubeId}/hqdefault.jpg`;
+        }
+      }
+      return project.thumbnail;
+    })();
+
+    const handleError = () => {
+      if (imageState === "maxres" && project.youtubeId) {
+        setImageState("hq");
+      } else {
+        setImageState("fallback");
+      }
+    };
 
     return (
       <Link href={`/work/${project.slug}`}>
         <div className="group relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-          {imageError ? (
+          {imageState === "fallback" ? (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
               <span className="text-sm font-medium text-zinc-500">
                 Coming Soon
@@ -49,12 +71,12 @@ const ProjectCard = React.memo(
             </div>
           ) : (
             <Image
-              src={project.thumbnail}
+              src={thumbnailSrc}
               alt={`${project.title} - ${project.category} project thumbnail`}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
               className="object-cover grayscale [transition:transform_0.4s_ease-out,_filter_0.4s_ease-out] group-hover:scale-[1.04] group-hover:grayscale-0"
-              onError={() => setImageError(true)}
+              onError={handleError}
             />
           )}
           <div className="absolute inset-0 bg-black/0 [transition:background-color_0.4s_ease-out] group-hover:bg-black/30" />

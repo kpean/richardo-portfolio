@@ -64,7 +64,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <div className="relative w-full bg-black">
         <div className="relative aspect-video w-full overflow-hidden rounded-lg">
           <iframe
-            src={`https://www.youtube.com/embed/${project.videoUrl.split("v=")[1]?.split("&")[0] || ""}`}
+            src={`https://www.youtube.com/embed/${project.youtubeId}`}
             title={project.title}
             className="absolute inset-0 h-full w-full"
             allowFullScreen
