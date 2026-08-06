@@ -49,51 +49,20 @@ export function Navbar({
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
-          "fixed top-0 left-0 right-0 h-[72px] z-50 bg-white dark:bg-black border-b border-zinc-200 dark:border-zinc-800"
+          "sticky top-0 z-50 h-[110px] bg-black"
         )}
         aria-label="Main navigation"
       >
-        <div className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-full max-w-6xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="flex w-full items-center justify-end">
+            <ThemeToggle />
+          </div>
+
           <a href="/" className={brandClasses}>
             richardokvn
           </a>
 
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="relative flex h-10 w-10 items-center justify-center md:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileOpen}
-              aria-controls="mobile-menu"
-              type="button"
-            >
-              <span
-                className="absolute h-0.5 w-5 bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ease-out"
-                style={{
-                  transform: mobileOpen
-                    ? "rotate(45deg) translate(0px, 0px)"
-                    : "rotate(0deg) translate(0px, -4px)",
-                }}
-              />
-              <span
-                className="absolute h-0.5 w-5 bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ease-out"
-                style={{
-                  opacity: mobileOpen ? 0 : 1,
-                }}
-              />
-              <span
-                className="absolute h-0.5 w-5 bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ease-out"
-                style={{
-                  transform: mobileOpen
-                    ? "rotate(-45deg) translate(0px, 0px)"
-                    : "rotate(0deg) translate(0px, 4px)",
-                }}
-              />
-            </button>
-          </div>
-
-          <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 md:flex">
+          <div className="flex items-center gap-8">
             <a href="#work" className={linkClasses}>
               HOME
             </a>
@@ -119,13 +88,13 @@ export function Navbar({
                   <motion.div
                     role="menu"
                     aria-orientation="vertical"
-                    initial={{ opacity: 0, y: -6 }}
+                    initial={{ opacity: 0, y: -4 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
+                    exit={{ opacity: 0, y: -4 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-[170px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black"
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[170px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black"
                   >
                     <ul className="flex flex-col py-1">
                       {projectFilters.map((filter) => (
@@ -178,7 +147,7 @@ export function Navbar({
               transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
               className="fixed right-0 top-0 h-full w-72 bg-white dark:bg-zinc-950"
             >
-              <div className="flex h-[72px] items-center justify-between px-4 sm:px-6">
+              <div className="flex h-[120px] items-center justify-between px-4 sm:px-6">
                 <a href="/" className={brandClasses}>
                   richardokvn
                 </a>

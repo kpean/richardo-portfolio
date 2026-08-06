@@ -5,10 +5,13 @@ export interface Project {
   description: string;
   thumbnail: string;
   category: string;
+  year: string;
+  location: string;
   duration: string;
   role: string;
   software: string[];
   client: string;
+  videoUrl: string;
   tags: string[];
   githubUrl?: string;
   liveUrl?: string;

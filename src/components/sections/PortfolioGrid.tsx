@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
@@ -35,28 +35,41 @@ interface PortfolioGridProps {
 }
 
 const ProjectCard = React.memo(
-  motion(({ project }: { project: (typeof projects)[number] }) => (
-    <Link href={`/work/${project.slug}`}>
-      <div className="group relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-        <Image
-          src={project.thumbnail}
-          alt={`${project.title} - ${project.category} project thumbnail`}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover grayscale [transition:transform_0.4s_ease-out,_filter_0.4s_ease-out] group-hover:scale-[1.04] group-hover:grayscale-0"
-        />
-        <div className="absolute inset-0 bg-black/0 [transition:background-color_0.4s_ease-out] group-hover:bg-black/30" />
-        <div className="absolute inset-0 flex flex-col items-start justify-end p-5 opacity-0 translate-y-2 [transition:opacity_0.4s_ease-out,_transform_0.4s_ease-out] group-hover:opacity-100 group-hover:translate-y-0">
-          <span className="text-base font-medium text-white">
-            {project.title}
-          </span>
-          <span className="mt-1 text-xs font-light uppercase tracking-wider text-white/80">
-            {project.category}
-          </span>
+  motion(({ project }: { project: (typeof projects)[number] }) => {
+    const [imageError, setImageError] = useState(false);
+
+    return (
+      <Link href={`/work/${project.slug}`}>
+        <div className="group relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+          {imageError ? (
+            <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
+              <span className="text-sm font-medium text-zinc-500">
+                Coming Soon
+              </span>
+            </div>
+          ) : (
+            <Image
+              src={project.thumbnail}
+              alt={`${project.title} - ${project.category} project thumbnail`}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              className="object-cover grayscale [transition:transform_0.4s_ease-out,_filter_0.4s_ease-out] group-hover:scale-[1.04] group-hover:grayscale-0"
+              onError={() => setImageError(true)}
+            />
+          )}
+          <div className="absolute inset-0 bg-black/0 [transition:background-color_0.4s_ease-out] group-hover:bg-black/30" />
+          <div className="absolute inset-0 flex flex-col items-start justify-end p-5 opacity-0 translate-y-2 [transition:opacity_0.4s_ease-out,_transform_0.4s_ease-out] group-hover:opacity-100 group-hover:translate-y-0">
+            <span className="text-base font-medium text-white">
+              {project.title}
+            </span>
+            <span className="mt-1 text-xs font-light uppercase tracking-wider text-white/80">
+              {project.category}
+            </span>
+          </div>
         </div>
-      </div>
-    </Link>
-  ))
+      </Link>
+    );
+  })
 );
 
 ProjectCard.displayName = "ProjectCard";

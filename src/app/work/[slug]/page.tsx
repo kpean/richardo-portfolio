@@ -62,21 +62,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <main className="flex min-h-screen flex-col">
       <div className="relative w-full bg-black">
-        <div className="relative aspect-video w-full">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/10">
-                <svg
-                  className="h-10 w-10 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-              <span className="text-base text-zinc-400">{project.duration}</span>
-            </div>
-          </div>
+        <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+          <iframe
+            src={`https://www.youtube.com/embed/${project.videoUrl.split("v=")[1]?.split("&")[0] || ""}`}
+            title={project.title}
+            className="absolute inset-0 h-full w-full"
+            allowFullScreen
+          />
         </div>
       </div>
 
