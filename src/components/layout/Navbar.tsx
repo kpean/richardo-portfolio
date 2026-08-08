@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 const projectFilters = ["All", "Commercial", "YouTube", "Shorts", "Wedding"];
 
@@ -18,6 +19,8 @@ export function Navbar({
 }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const pathname = usePathname();
+  const isAboutPage = pathname === "/about";
 
   useEffect(() => {
     if (mobileOpen) {
@@ -62,10 +65,11 @@ export function Navbar({
             richardokvn
           </a>
 
-          <div className="flex items-center gap-8">
-            <a href="#work" className={linkClasses}>
-              HOME
-            </a>
+          {!isAboutPage && (
+            <div className="flex items-center gap-8">
+              <a href="#work" className={linkClasses}>
+                HOME
+              </a>
 
             <div
               className="relative"
@@ -119,18 +123,20 @@ export function Navbar({
               </AnimatePresence>
             </div>
 
-            <a href="#about" className={linkClasses}>
+            <a href="/about" className={linkClasses}>
               ABOUT
             </a>
             <a href="#contact" className={linkClasses}>
               CONTACT
             </a>
           </div>
+          )}
         </div>
       </motion.nav>
 
-      <AnimatePresence>
-        {mobileOpen && (
+      {!isAboutPage && (
+        <AnimatePresence>
+          {mobileOpen && (
           <motion.div
             id="mobile-menu"
             initial={{ opacity: 0 }}
@@ -183,7 +189,7 @@ export function Navbar({
                   PROJECTS
                 </a>
                 <a
-                  href="#about"
+                  href="/about"
                   onClick={() => setMobileOpen(false)}
                   className={linkClasses}
                 >
@@ -204,6 +210,7 @@ export function Navbar({
           </motion.div>
         )}
       </AnimatePresence>
+      )}
     </>
   );
 }
