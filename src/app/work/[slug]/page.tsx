@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main className="flex min-h-screen flex-col">
-      <div className="relative w-full bg-black">
+      <div className="relative w-full bg-black pt-8">
         <div
           className={cn(
             "relative mx-auto w-full overflow-hidden rounded-lg bg-black",

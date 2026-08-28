@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useCategoryFilter } from "@/components/CategoryFilterProvider";
 
-const projectFilters = ["All", "Commercial", "YouTube", "Shorts", "Wedding"];
+const projectFilters = ["All", "Commercial", "YouTube", "Wedding"];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -61,7 +61,7 @@ export function Navbar() {
 
           {!isAboutPage && (
             <div className="mt-6 flex items-center gap-8">
-              <a href="#work" className={linkClasses}>
+              <a href="/#work" className={linkClasses}>
                 HOME
               </a>
 
@@ -169,7 +169,7 @@ export function Navbar() {
               </div>
               <div className="flex flex-col items-center gap-5 pt-10">
                 <a
-                  href="#work"
+                  href="/#work"
                   onClick={() => setMobileOpen(false)}
                   className={linkClasses}
                 >
