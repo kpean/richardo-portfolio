@@ -16,6 +16,7 @@ export interface Project {
   challenge?: string;
   result?: string;
   featured?: boolean;
+  vertical?: boolean;
   githubUrl?: string;
   liveUrl?: string;
 }

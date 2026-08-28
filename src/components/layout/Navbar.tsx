@@ -66,7 +66,7 @@ export function Navbar({
           </a>
 
           {!isAboutPage && (
-            <div className="flex items-center gap-8">
+            <div className="mt-6 flex items-center gap-8">
               <a href="#work" className={linkClasses}>
                 HOME
               </a>

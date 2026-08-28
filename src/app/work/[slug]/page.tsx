@@ -62,11 +62,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <main className="flex min-h-screen flex-col">
       <div className="relative w-full bg-black">
-        <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+        <div
+          className={cn(
+            "relative mx-auto w-full overflow-hidden rounded-lg bg-black",
+            project.vertical
+              ? "max-w-[420px] aspect-[9/16]"
+              : "aspect-video"
+          )}
+        >
           <iframe
             src={`https://www.youtube.com/embed/${project.youtubeId}`}
             title={project.title}
             className="absolute inset-0 h-full w-full"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
         </div>

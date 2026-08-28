@@ -62,7 +62,12 @@ const ProjectCard = React.memo(
 
     return (
       <Link href={`/work/${project.slug}`}>
-        <div className="group relative aspect-video overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+        <div
+          className={cn(
+            "group relative overflow-hidden bg-zinc-100 dark:bg-zinc-900",
+            project.vertical ? "aspect-[9/16]" : "aspect-video"
+          )}
+        >
           {imageState === "fallback" ? (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
               <span className="text-sm font-medium text-zinc-500">
