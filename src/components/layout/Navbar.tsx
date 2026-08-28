@@ -14,6 +14,7 @@ export function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
   const isAboutPage = pathname === "/about";
+  const isHomePage = pathname === "/";
   const { activeCategory, setActiveCategory } = useCategoryFilter();
 
   useEffect(() => {
@@ -61,9 +62,11 @@ export function Navbar() {
 
           {!isAboutPage && (
             <div className="mt-6 flex items-center gap-8">
+              {!isHomePage && (
               <a href="/#work" className={linkClasses}>
                 HOME
               </a>
+              )}
 
             <div
               className="relative"
@@ -168,6 +171,7 @@ export function Navbar() {
                 </button>
               </div>
               <div className="flex flex-col items-center gap-5 pt-10">
+                {!isHomePage && (
                 <a
                   href="/#work"
                   onClick={() => setMobileOpen(false)}
@@ -175,6 +179,7 @@ export function Navbar() {
                 >
                   HOME
                 </a>
+                )}
                 <a
                   href="#projects"
                   onClick={() => setMobileOpen(false)}
