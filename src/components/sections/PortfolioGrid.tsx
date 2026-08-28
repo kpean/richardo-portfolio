@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
+import { useCategoryFilter } from "@/components/CategoryFilterProvider";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -31,7 +32,6 @@ const cardVariants: Variants = {
 
 interface PortfolioGridProps {
   className?: string;
-  activeCategory?: string;
 }
 
 const ProjectCard = React.memo(
@@ -62,12 +62,7 @@ const ProjectCard = React.memo(
 
     return (
       <Link href={`/work/${project.slug}`}>
-        <div
-          className={cn(
-            "group relative overflow-hidden bg-zinc-100 dark:bg-zinc-900",
-            project.vertical ? "aspect-[9/16]" : "aspect-video"
-          )}
-        >
+        <div className="group relative aspect-[4/3] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
           {imageState === "fallback" ? (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
               <span className="text-sm font-medium text-zinc-500">
@@ -101,10 +96,8 @@ const ProjectCard = React.memo(
 
 ProjectCard.displayName = "ProjectCard";
 
-export function PortfolioGrid({
-  className,
-  activeCategory = "All",
-}: PortfolioGridProps) {
+export function PortfolioGrid({ className }: PortfolioGridProps) {
+  const { activeCategory } = useCategoryFilter();
   const filteredProjects = useMemo(
     () =>
       activeCategory === "All"

@@ -5,22 +5,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useCategoryFilter } from "@/components/CategoryFilterProvider";
 
 const projectFilters = ["All", "Commercial", "YouTube", "Shorts", "Wedding"];
 
-interface NavbarProps {
-  activeCategory?: string;
-  setActiveCategory?: (category: string) => void;
-}
-
-export function Navbar({
-  activeCategory = "All",
-  setActiveCategory = () => {},
-}: NavbarProps) {
+export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
   const isAboutPage = pathname === "/about";
+  const { activeCategory, setActiveCategory } = useCategoryFilter();
 
   useEffect(() => {
     if (mobileOpen) {
