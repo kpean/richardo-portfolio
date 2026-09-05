@@ -49,14 +49,14 @@ export function Hero({ className }: HeroProps) {
 
           <motion.p
             variants={itemVariants}
-            className="mt-3 text-sm font-light tracking-wide text-zinc-500 dark:text-zinc-400 sm:text-base md:text-lg"
+            className="mt-3 text-sm font-light tracking-wide text-zinc-500 sm:text-base md:text-lg"
           >
             Video Editor
           </motion.p>
 
           <motion.p
             variants={itemVariants}
-            className="mt-2 text-xs font-light tracking-wide text-zinc-400 dark:text-zinc-500 sm:text-sm"
+            className="mt-2 text-xs font-light tracking-wide text-zinc-400 sm:text-sm"
           >
             Cinematic video editing for brands and storytellers
           </motion.p>

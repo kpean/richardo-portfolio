@@ -11,24 +11,39 @@ const software = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
+     <div className="min-h-screen bg-[#F7F7F5]">
       <div className="mx-auto max-w-6xl px-6 pt-24 pb-32 md:pt-32 md:pb-48 lg:px-8">
         <a
           href="/"
-          className="inline-block text-lg font-semibold tracking-tight text-zinc-900 transition-colors duration-200 hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400"
+           className="inline-block text-lg font-semibold tracking-tight text-zinc-900 transition-colors duration-200 hover:text-zinc-600"
         >
           richardokvn
         </a>
 
-        <div className="mt-16 md:mt-24">
-          <h1 className="text-4xl font-normal tracking-tight text-black md:text-6xl lg:text-7xl dark:text-white leading-[1.1]">
-            Video editor &amp; visual storyteller based in Bali.
+        <div className="mt-12 md:mt-16">
+          <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
+            About
+            <span aria-hidden="true"> / </span>
+            <span>01</span>
+          </p>
+        </div>
+
+        <div className="mt-8 md:mt-10">
+          <h1 className="text-5xl font-normal tracking-tight text-black md:text-7xl lg:text-8xl leading-[0.95]">
+            Video editor
+            <br />
+            &amp; visual
+            <br />
+            storyteller
           </h1>
+          <p className="mt-6 md:mt-8 text-base text-zinc-500">
+            Based in Bali — working with brands, creators, and couples.
+          </p>
         </div>
 
         <div className="mt-16 md:mt-24 grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-7">
-            <div className="space-y-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 md:text-lg md:leading-relaxed">
+            <div className="space-y-6 text-base leading-relaxed text-zinc-600 md:text-lg md:leading-relaxed">
               <p>
                 Richardo Kevin is a video editor and visual storyteller based in
                 Bali, working across weddings, lifestyle, commercial, and YouTube
@@ -56,38 +71,48 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-12 md:mt-16 space-y-3">
-              <p className="text-sm font-medium text-black dark:text-white">
-                Always open to new collaborations, conversations, and creative
-                projects.
+              <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
+                Available for
               </p>
-              <p className="text-sm font-medium text-black dark:text-white">
+              <p className="text-sm font-medium text-black">
+                New collaborations, creative projects, and conversations.
+              </p>
+              <a
+                href="mailto:richardokepin@gmail.com"
+                className="text-sm text-black underline underline-offset-4 transition-colors duration-200 hover:text-zinc-600"
+              >
                 Get in touch
-              </p>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              </a>
+              <p className="text-sm text-zinc-500">
                 Available worldwide.
               </p>
             </div>
           </div>
 
-          <div className="md:col-span-4 md:col-start-9 flex items-end">
-            <div className="relative w-full max-w-sm aspect-[3/4]">
+          <div className="md:col-span-4 md:col-start-9 flex items-start">
+            <div className="group relative w-full max-w-sm aspect-[3/4] transition-transform duration-[350ms] ease-out hover:scale-[1.02]">
               <Image
                 src="/images/profile.png"
                 alt="Portrait of Richardo Kevin"
                 fill
-                className="object-cover"
+                className="object-cover grayscale"
               />
             </div>
           </div>
         </div>
 
-        <div className="mt-24 md:mt-32">
-          <h2 className="text-xs font-medium uppercase tracking-widest text-zinc-500">
+        <div className="mt-24 md:mt-32 border-t border-black/10 pt-10">
+          <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
             Software
-          </h2>
-          <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-700 dark:text-zinc-300">
-            {software.map((tool) => (
-              <span key={tool}>{tool}</span>
+          </p>
+          <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-2 text-sm text-zinc-700 md:grid-cols-2">
+            {software.map((tool, idx) => (
+              <p key={tool} className="flex items-center gap-3">
+                <span className="text-xs text-zinc-400">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span>{tool}</span>
+              </p>
             ))}
           </div>
         </div>

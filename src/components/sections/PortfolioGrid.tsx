@@ -35,7 +35,7 @@ interface PortfolioGridProps {
 }
 
 const ProjectCard = React.memo(
-  motion(({ project }: { project: (typeof projects)[number] }) => {
+  motion(({ project, index }: { project: (typeof projects)[number]; index?: number }) => {
     const [imgError, setImgError] = useState(false);
     const [imgState, setImgState] = useState<"maxres" | "hq" | "fallback">(
       "maxres"
@@ -63,7 +63,7 @@ const ProjectCard = React.memo(
 
     return (
       <Link href={`/work/${project.slug}`} className="group block">
-        <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100 dark:bg-zinc-900 transition-transform duration-[350ms] ease-out group-hover:scale-[1.03]">
+        <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100 transition-transform duration-[350ms] ease-out group-hover:scale-[1.03]">
           {imgState === "fallback" ? (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
               <span className="text-sm font-medium text-zinc-500">
@@ -82,6 +82,11 @@ const ProjectCard = React.memo(
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
           <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+            {typeof index === "number" && (
+              <p className="text-[10px] font-medium uppercase tracking-widest text-white/40">
+                {String(index + 1).padStart(2, '0')}
+              </p>
+            )}
             <p className="text-xs font-medium uppercase tracking-widest text-white/70">
               {project.client}
             </p>
@@ -103,7 +108,7 @@ const ProjectCard = React.memo(
         </div>
         <div className="mt-4 flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <h3 className="text-base font-medium tracking-tight text-black transition-transform duration-300 ease-out group-hover:-translate-y-[4px] dark:text-white">
+            <h3 className="text-base font-medium tracking-tight text-black transition-transform duration-300 ease-out group-hover:-translate-y-[4px]">
               {project.title}
             </h3>
             <p className="mt-1 text-xs font-medium uppercase tracking-widest text-zinc-500 transition-transform duration-300 ease-out group-hover:-translate-y-[4px]">
@@ -143,21 +148,22 @@ export function PortfolioGrid({ className }: PortfolioGridProps) {
         className
       )}
     >
-      <motion.div
-        layout
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3"
-        aria-live="polite"
-      >
-        {filteredProjects.map((project) => (
-          <motion.div layout key={project.id} variants={itemVariants}>
-            <ProjectCard project={project} />
-          </motion.div>
-        ))}
-      </motion.div>
+        <motion.div
+          layout
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="mt-12 border-t border-black/10"
+        >
+          <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+            {filteredProjects.map((project, index) => (
+              <motion.div layout key={project.id} variants={itemVariants} className={cn("border-b border-black/5", index === 0 ? "md:border-t md:border-black/5" : "")}>
+                <ProjectCard project={project} index={index} />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
     </section>
   );
 }

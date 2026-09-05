@@ -14,6 +14,7 @@ export function Projects({ className }: ProjectsProps) {
           SELECTED<br />
           WORK
         </h2>
+        <div className="mt-6 h-px w-full bg-black/10" />
         <div className="mt-12">
           <PortfolioGrid />
         </div>

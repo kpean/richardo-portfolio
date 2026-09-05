@@ -27,16 +27,16 @@ export const About = React.memo(({ className }: AboutProps) => {
           viewport={{ once: true }}
           className="max-w-2xl"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-black dark:text-white sm:text-4xl">
+          <h2 className="text-3xl font-normal tracking-tight text-black sm:text-4xl">
             About
           </h2>
-          <p className="mt-6 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
+          <p className="mt-6 text-base leading-relaxed text-zinc-600 sm:text-lg">
             Richardo Kevin is a Bali-based video editor specializing in cinematic
             storytelling for brands, businesses, and creators. Focused on creating
             clean visuals, engaging pacing, and emotional narratives.
           </p>
 
-          <ul className="mt-8 space-y-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+            <ul className="mt-8 space-y-2 text-sm font-medium text-zinc-700">
             {software.map((tool) => (
               <li key={tool} className="leading-6">
                 {tool}

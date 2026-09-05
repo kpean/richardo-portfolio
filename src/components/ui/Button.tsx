@@ -15,14 +15,11 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 dark:focus-visible:ring-white/20 disabled:opacity-50 disabled:pointer-events-none",
+        "inline-flex items-center justify-center rounded-full font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 disabled:opacity-50 disabled:pointer-events-none",
         {
-          "bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200":
-            variant === "default",
-          "border border-black/10 bg-transparent hover:bg-black/5 dark:border-white/10 dark:hover:bg-white/5":
-            variant === "outline",
-          "bg-transparent hover:bg-black/5 dark:hover:bg-white/5":
-            variant === "ghost",
+          "bg-black text-white hover:bg-zinc-800": variant === "default",
+          "border border-black/10 bg-transparent hover:bg-black/5": variant === "outline",
+          "bg-transparent hover:bg-black/5": variant === "ghost",
         },
         {
           "h-9 px-4 text-sm": size === "sm",

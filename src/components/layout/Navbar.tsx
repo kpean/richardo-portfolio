@@ -28,10 +28,10 @@ export function Navbar() {
   }, [mobileOpen]);
 
   const linkClasses =
-    "text-sm font-medium text-zinc-600 transition-colors duration-200 ease-out hover:text-black dark:text-zinc-400 dark:hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white";
+    "text-sm font-medium text-zinc-600 transition-colors duration-200 ease-out hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2";
 
   const brandClasses =
-    "font-semibold tracking-tight text-lg text-zinc-900 transition-colors duration-200 ease-out hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white";
+    "font-semibold tracking-tight text-lg text-zinc-900 transition-colors duration-200 ease-out hover:text-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2";
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
@@ -46,7 +46,7 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
-          "sticky top-0 z-50 h-[80px] bg-black"
+          "sticky top-0 z-50 h-[80px] bg-[#F7F7F5]"
         )}
         aria-label="Main navigation"
       >
@@ -90,7 +90,7 @@ export function Navbar() {
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     onMouseEnter={() => setDropdownOpen(true)}
                     onMouseLeave={() => setDropdownOpen(false)}
-                    className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[170px] border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-black"
+                     className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[170px] border border-zinc-200 bg-white"
                   >
                     <ul className="flex flex-col py-1">
                       {projectFilters.map((filter) => (
@@ -99,10 +99,10 @@ export function Navbar() {
                             onClick={() => handleCategoryClick(filter)}
                             role="menuitem"
                             className={cn(
-                              "w-full text-left px-4 py-1 text-sm transition-colors duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white",
-                              activeCategory === filter
-                                ? "font-bold text-black underline decoration-1 underline-offset-1 dark:text-white dark:decoration-white"
-                                : "text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-white"
+                               "w-full text-left px-4 py-1 text-sm transition-colors duration-200 ease-out focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2",
+                               activeCategory === filter
+                                 ? "font-bold text-black underline decoration-1 underline-offset-1"
+                                 : "text-zinc-600 hover:text-black"
                             )}
                           >
                             {filter}
@@ -143,7 +143,7 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
-              className="fixed right-0 top-0 h-full w-72 bg-white dark:bg-zinc-950"
+               className="fixed right-0 top-0 h-full w-72 bg-white"
             >
               <div className="flex h-[120px] items-center justify-between px-4 sm:px-6">
                 <a href="/" className={brandClasses}>
@@ -151,18 +151,18 @@ export function Navbar() {
                 </a>
                 <button
                   onClick={() => setMobileOpen(false)}
-                  className="relative flex h-10 w-10 items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white"
-                  aria-label="Close menu"
-                  type="button"
-                >
-                  <span
-                    className="absolute h-0.5 w-5 rotate-45 bg-zinc-900 dark:bg-zinc-100"
-                    style={{ opacity: mobileOpen ? 1 : 0 }}
-                  />
-                  <span
-                    className="absolute h-0.5 w-5 -rotate-45 bg-zinc-900 dark:bg-zinc-100"
-                    style={{ opacity: mobileOpen ? 1 : 0 }}
-                  />
+                   className="relative flex h-10 w-10 items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
+                   aria-label="Close menu"
+                   type="button"
+                 >
+                   <span
+                     className="absolute h-0.5 w-5 rotate-45 bg-zinc-900"
+                     style={{ opacity: mobileOpen ? 1 : 0 }}
+                   />
+                   <span
+                     className="absolute h-0.5 w-5 -rotate-45 bg-zinc-900"
+                     style={{ opacity: mobileOpen ? 1 : 0 }}
+                   />
                 </button>
               </div>
               <div className="flex flex-col items-center gap-5 pt-10">

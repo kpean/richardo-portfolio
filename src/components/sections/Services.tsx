@@ -73,10 +73,10 @@ export function Services({ className }: ServicesProps) {
             <motion.div
               key={service.name}
               variants={cardVariants}
-              className="rounded-xl border border-black/10 bg-white p-6 transition-transform hover:-translate-y-1 dark:border-white/10 dark:bg-zinc-950"
+              className="rounded-xl border border-black/10 bg-white p-6 transition-transform hover:-translate-y-1"
             >
               <h3 className="text-base font-semibold">{service.name}</h3>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-sm text-zinc-600">
                 {service.description}
               </p>
             </motion.div>

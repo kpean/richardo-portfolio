@@ -41,7 +41,7 @@ export const Contact = React.memo(({ className }: ContactProps) => {
           viewport={{ once: true }}
           className="max-w-2xl"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-black dark:text-white sm:text-4xl">
+          <h2 className="text-3xl font-normal tracking-tight text-black sm:text-4xl">
             Contact
           </h2>
 
@@ -54,12 +54,12 @@ export const Contact = React.memo(({ className }: ContactProps) => {
                   {...(item.external
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="group flex flex-col gap-2 border-t border-black/10 py-5 [transition:color_0.2s_ease-out,_border-color_0.2s_ease-out] hover:border-black hover:text-black/80 dark:border-white/10 dark:hover:border-white dark:hover:text-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white"
+                   className="group flex flex-col gap-2 border-t border-black/10 py-5 [transition:color_0.2s_ease-out,_border-color_0.2s_ease-out] hover:border-black hover:text-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                 >
                   <span className="text-xs font-medium uppercase tracking-wider text-zinc-500">
                     {item.label}
                   </span>
-                  <span className="text-2xl font-light text-black dark:text-white sm:text-3xl sm:tracking-tight">
+                  <span className="text-2xl font-light text-black sm:text-3xl sm:tracking-tight">
                     {item.value}
                   </span>
                 </a>
