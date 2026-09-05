@@ -28,7 +28,7 @@ export function Footer({ className }: FooterProps) {
       )}
       aria-label="Site footer"
     >
-      <div className="mx-auto flex flex-col items-center justify-between gap-4 px-4 py-10 sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex flex-col items-center justify-between gap-4 px-4 py-8 sm:flex-row sm:px-6 lg:px-8">
         <p className="text-sm font-medium text-black dark:text-white">
           © 2026 richardokvn
         </p>

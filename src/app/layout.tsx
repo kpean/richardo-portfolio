@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { StructuredData } from "@/components/StructuredData";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { CategoryFilterProvider } from "@/components/CategoryFilterProvider";
 import { ConditionalNavbar } from "@/components/layout/ConditionalNavbar";
 import { Footer } from "@/components/layout/Footer";
+import { PageTransition } from "@/components/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,16 +65,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col">
-        <ThemeProvider>
-          <CategoryFilterProvider>
-            <ConditionalNavbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <StructuredData />
-          </CategoryFilterProvider>
-        </ThemeProvider>
+        <CategoryFilterProvider>
+          <ConditionalNavbar />
+          <main className="flex-1">
+            <PageTransition>
+              {children}
+            </PageTransition>
+          </main>
+          <Footer />
+          <StructuredData />
+        </CategoryFilterProvider>
       </body>
     </html>
   );

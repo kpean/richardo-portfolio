@@ -13,18 +13,18 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06,
+      staggerChildren: 0.08,
     },
   },
 };
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 16 },
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 12 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.35,
+      duration: 0.4,
       ease: "easeOut",
     },
   },
@@ -36,16 +36,17 @@ interface PortfolioGridProps {
 
 const ProjectCard = React.memo(
   motion(({ project }: { project: (typeof projects)[number] }) => {
-    const [imageState, setImageState] = useState<
-      "maxres" | "hq" | "fallback"
-    >("maxres");
+    const [imgError, setImgError] = useState(false);
+    const [imgState, setImgState] = useState<"maxres" | "hq" | "fallback">(
+      "maxres"
+    );
 
     const thumbnailSrc = (() => {
       if (project.youtubeId) {
-        if (imageState === "maxres") {
+        if (imgState === "maxres") {
           return `https://i.ytimg.com/vi/${project.youtubeId}/maxresdefault.jpg`;
         }
-        if (imageState === "hq") {
+        if (imgState === "hq") {
           return `https://i.ytimg.com/vi/${project.youtubeId}/hqdefault.jpg`;
         }
       }
@@ -53,17 +54,17 @@ const ProjectCard = React.memo(
     })();
 
     const handleError = () => {
-      if (imageState === "maxres" && project.youtubeId) {
-        setImageState("hq");
+      if (project.youtubeId && imgState === "maxres") {
+        setImgState("hq");
       } else {
-        setImageState("fallback");
+        setImgState("fallback");
       }
     };
 
     return (
-      <Link href={`/work/${project.slug}`}>
-        <div className="group relative aspect-[4/3] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-          {imageState === "fallback" ? (
+      <Link href={`/work/${project.slug}`} className="group block">
+        <div className="relative aspect-[4/3] overflow-hidden bg-zinc-100 dark:bg-zinc-900 transition-transform duration-[350ms] ease-out group-hover:scale-[1.03]">
+          {imgState === "fallback" ? (
             <div className="absolute inset-0 flex items-center justify-center bg-zinc-900">
               <span className="text-sm font-medium text-zinc-500">
                 Coming Soon
@@ -72,21 +73,50 @@ const ProjectCard = React.memo(
           ) : (
             <Image
               src={thumbnailSrc}
-              alt={`${project.title} - ${project.category} project thumbnail`}
+              alt={project.title}
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              className="object-cover grayscale [transition:transform_0.4s_ease-out,_filter_0.4s_ease-out] group-hover:scale-[1.04] group-hover:grayscale-0"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover grayscale transition-all duration-[350ms] ease-out group-hover:grayscale-0"
               onError={handleError}
             />
           )}
-          <div className="absolute inset-0 bg-black/0 [transition:background-color_0.4s_ease-out] group-hover:bg-black/30" />
-          <div className="absolute inset-0 flex flex-col items-start justify-end p-5 opacity-0 translate-y-2 [transition:opacity_0.4s_ease-out,_transform_0.4s_ease-out] group-hover:opacity-100 group-hover:translate-y-0">
-            <span className="text-base font-medium text-white">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
+            <p className="text-xs font-medium uppercase tracking-widest text-white/70">
+              {project.client}
+            </p>
+            <h3 className="mt-1 text-sm font-medium text-white">
               {project.title}
-            </span>
-            <span className="mt-1 text-xs font-light uppercase tracking-wider text-white/80">
+            </h3>
+            <p className="mt-1 text-xs text-white/60">
               {project.category}
-            </span>
+              {project.year && (
+                <>
+                  <span aria-hidden="true" className="mx-1">
+                    ·
+                  </span>
+                  <span>{project.year}</span>
+                </>
+              )}
+            </p>
+          </div>
+        </div>
+        <div className="mt-4 flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <h3 className="text-base font-medium tracking-tight text-black transition-transform duration-300 ease-out group-hover:-translate-y-[4px] dark:text-white">
+              {project.title}
+            </h3>
+            <p className="mt-1 text-xs font-medium uppercase tracking-widest text-zinc-500 transition-transform duration-300 ease-out group-hover:-translate-y-[4px]">
+              {project.category}
+              {project.year && (
+                <>
+                  <span aria-hidden="true" className="mx-2">
+                    /
+                  </span>
+                  <span>{project.year}</span>
+                </>
+              )}
+            </p>
           </div>
         </div>
       </Link>
@@ -109,7 +139,7 @@ export function PortfolioGrid({ className }: PortfolioGridProps) {
   return (
     <section
       className={cn(
-        "mx-auto max-w-[1400px] px-6 pt-28 sm:px-10 lg:px-16",
+        "mx-auto max-w-[1400px] px-6 sm:px-10 lg:px-16",
         className
       )}
     >
@@ -118,12 +148,12 @@ export function PortfolioGrid({ className }: PortfolioGridProps) {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-14"
+        viewport={{ once: true, margin: "-50px" }}
+        className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3"
         aria-live="polite"
       >
         {filteredProjects.map((project) => (
-          <motion.div layout key={project.id} variants={cardVariants}>
+          <motion.div layout key={project.id} variants={itemVariants}>
             <ProjectCard project={project} />
           </motion.div>
         ))}
@@ -131,3 +161,4 @@ export function PortfolioGrid({ className }: PortfolioGridProps) {
     </section>
   );
 }
+

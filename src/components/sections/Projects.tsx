@@ -10,8 +10,9 @@ export function Projects({ className }: ProjectsProps) {
   return (
     <section id="projects" className={cn("pt-16 md:pt-20 py-20 md:py-32", className)}>
       <Container>
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Projects
+        <h2 className="text-5xl font-normal tracking-tight md:text-7xl lg:text-8xl">
+          SELECTED<br />
+          WORK
         </h2>
         <div className="mt-12">
           <PortfolioGrid />

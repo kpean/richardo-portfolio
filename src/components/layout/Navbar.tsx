@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useCategoryFilter } from "@/components/CategoryFilterProvider";
@@ -32,7 +31,7 @@ export function Navbar() {
     "text-sm font-medium text-zinc-600 transition-colors duration-200 ease-out hover:text-black dark:text-zinc-400 dark:hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white";
 
   const brandClasses =
-    "font-semibold tracking-tight text-xl text-zinc-900 transition-colors duration-200 ease-out hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white";
+    "font-semibold tracking-tight text-lg text-zinc-900 transition-colors duration-200 ease-out hover:text-zinc-600 dark:text-zinc-100 dark:hover:text-zinc-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 dark:focus-visible:ring-white";
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
@@ -47,21 +46,17 @@ export function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={cn(
-          "sticky top-0 z-50 h-[110px] bg-black"
+          "sticky top-0 z-50 h-[80px] bg-black"
         )}
         aria-label="Main navigation"
       >
         <div className="mx-auto flex h-full max-w-6xl flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-          <div className="flex w-full items-center justify-end">
-            <ThemeToggle />
-          </div>
-
           <a href="/" className={brandClasses}>
             richardokvn
           </a>
 
           {!isAboutPage && (
-            <div className="mt-6 flex items-center gap-8">
+            <div className="mt-3 flex items-center gap-8">
               {!isHomePage && (
               <a href="/#work" className={linkClasses}>
                 HOME
@@ -201,9 +196,6 @@ export function Navbar() {
                 >
                   CONTACT
                 </a>
-                <div className="pt-4">
-                  <ThemeToggle />
-                </div>
               </div>
             </motion.div>
           </motion.div>

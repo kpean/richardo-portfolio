@@ -95,73 +95,70 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <p className="text-sm font-medium tracking-widest text-zinc-500 uppercase">
             {project.category}
           </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-black dark:text-white sm:text-5xl md:text-6xl">
+          <h1 className="mt-4 text-4xl font-normal tracking-tight text-black dark:text-white sm:text-5xl md:text-6xl">
             {project.title}
           </h1>
 
-          <div className="mt-12 space-y-8">
+          <div className="mt-16 space-y-10">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
               <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+                <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
                   Client
                 </p>
-                <p className="mt-2 text-base text-zinc-900 dark:text-zinc-100">
+                <p className="mt-3 text-base text-zinc-900 dark:text-zinc-100">
                   {project.client}
                 </p>
               </div>
               <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+                <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
                   My Role
                 </p>
-                <p className="mt-2 text-base text-zinc-900 dark:text-zinc-100">
+                <p className="mt-3 text-base text-zinc-900 dark:text-zinc-100">
                   {project.role}
                 </p>
               </div>
             </div>
 
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-zinc-500">
+              <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
                 Software Used
               </p>
-              <p className="mt-2 text-base text-zinc-900 dark:text-zinc-100">
+              <p className="mt-3 text-base text-zinc-900 dark:text-zinc-100">
                 {project.software.join(", ")}
               </p>
             </div>
 
-            <div className="border-t border-black/10 pt-8 dark:border-white/10">
-              <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <div className="border-t border-black/10 pt-10 dark:border-white/10">
+              <p className="text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
                 {project.description}
               </p>
             </div>
           </div>
 
           {relatedProjects.length > 0 && (
-            <div className="mt-20 md:mt-32">
-              <h2 className="text-2xl font-semibold tracking-tight text-black dark:text-white">
+            <div className="mt-24 md:mt-32">
+              <h2 className="text-xs font-medium uppercase tracking-widest text-zinc-500">
                 Related Projects
               </h2>
-              <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-8 divide-y divide-black/10 dark:divide-white/10">
                 {relatedProjects.map((relatedProject) => (
                   <Link
                     key={relatedProject.id}
                     href={`/work/${relatedProject.slug}`}
-                    className="group"
+                    className="group block py-6"
                   >
-                    <div className="group relative aspect-[4/5] overflow-hidden bg-zinc-100 dark:bg-zinc-900">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-4xl font-light text-zinc-300 dark:text-zinc-700">
-                          {relatedProject.title.charAt(0)}
-                        </span>
+                    <div className="flex items-center justify-between gap-6">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xl font-normal tracking-tight text-black transition-colors duration-200 group-hover:text-zinc-500 dark:text-white dark:group-hover:text-zinc-400">
+                          {relatedProject.title}
+                        </p>
+                        <p className="mt-1 text-xs uppercase tracking-widest text-zinc-500">
+                          {relatedProject.category}
+                        </p>
                       </div>
-                      <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/10" />
-                    </div>
-                    <div className="mt-4">
-                      <p className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                        {relatedProject.title}
-                      </p>
-                      <p className="mt-1 text-xs text-zinc-500">
-                        {relatedProject.category}
-                      </p>
+                      <span className="text-sm text-zinc-400 transition-colors duration-200 group-hover:text-black dark:group-hover:text-white">
+                        →
+                      </span>
                     </div>
                   </Link>
                 ))}
